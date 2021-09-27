@@ -1,5 +1,5 @@
 async() {
-    eval "$1"
+    eval "nohup $1 2>&1 &"
     echo "$2@-SPLIT-@$3"
 }
 

@@ -21,6 +21,7 @@ assertequals "A B" "$L"
 info "[pass]"
 
 info "test async + await"
+rm boot.log
 future=`async "echo \"server started\" > boot.log" "boot.log" "server started"`
 assertequals "boot.log@-SPLIT-@server started" "$future"
 await "$future"
@@ -29,6 +30,7 @@ info "[pass]"
 info "test multi(async + await)"
 for i in {1..2}
 do
+    rm "$i.log"
     future=`async "echo $i > $i.log" "$i.log" "$i"`
     futures=`listappend "$futures" "$future"`
 done

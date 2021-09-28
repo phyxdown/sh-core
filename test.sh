@@ -23,7 +23,7 @@ info "[pass]"
 info "test async + await"
 rm boot.log
 future=`async "echo \"server started\" > boot.log" "boot.log" "server started"`
-assertequals "boot.log@-SPLIT-@server started" "$future"
+assertequals "boot.log@-SPLIT-@server@-SPACE-@started" "$future"
 await "$future"
 info "[pass]"
 
@@ -31,7 +31,7 @@ info "test multi(async + await)"
 for i in {1..2}
 do
     rm "$i.log"
-    future=`async "echo $i > $i.log" "$i.log" "$i"`
+    future=`async "echo 'message $i' > $i.log" "$i.log" "message $i"`
     futures=`listappend "$futures" "$future"`
 done
 for i in $futures

@@ -6,3 +6,11 @@ countdown() {
     done
     echo ""
 }
+
+schedule() {
+    while true
+    do
+        eval "$2"
+        sleep $1
+    done
+}
